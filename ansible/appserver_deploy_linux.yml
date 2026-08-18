@@ -1,0 +1,12 @@
+---
+# 在 Linux 应用服务器上部署 usmdriver
+# 将参数拼成原始部署命令一次性执行，便于验证命令是否成功
+# 变量由 tools_service.py /appServer/deploy 通过 --extra-vars 注入:
+#   target_group / server_ip / arch_suffix / ak / sk
+- name: Deploy usmdriver on Linux application servers
+  hosts: "{{ target_group }}"
+  become: true
+  gather_facts: false
+  tasks:
+    - name: 下载并部署 usmdriver
+      shell: wget --no-check-certificate -O usmdriver.install https://{{ server_ip }}/pamapi/appserver/tools/usmdriver-linux-{{ arch_suffix }} && chmod +x ./usmdriver.install && ./usmdriver.install && /opt/usmdriver/usmManager -ak={{ ak }} -sk={{ sk }}

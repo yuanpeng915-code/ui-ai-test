@@ -1,0 +1,17 @@
+---
+# 在 Windows 应用服务器上部署 usmdriver
+# 命令取自应用服务器部署页"生成命令"，PowerShell 脚本，无架构区分
+# 变量由 tools_service.py /appServer/deploy 通过 --extra-vars 注入:
+#   target_group / server_ip / ak / sk
+- name: Deploy usmdriver on Windows application servers
+  hosts: "{{ target_group }}"
+  gather_facts: false
+  tasks:
+    - name: 下载并部署 usmdriver
+      win_shell: |
+        $addr="https://{{ server_ip }}/pamapi/appserver/tools"
+        $path="$env:TEMP\USMSetup.exe"
+        [Net.ServicePointManager]::ServerCertificateValidationCallback={$true}
+        [Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls11,[Net.SecurityProtocolType]::Tls12
+        (new-object System.Net.WebClient).DownloadFile("$addr/usmdriver-win-setup","$path")
+        Start-Process -FilePath "$path" -ArgumentList "-ak={{ ak }} -sk={{ sk }} -disablechromeDownload=true -disablechromeAllFileSelect=true -zip_url=$addr/usmdriver-win" -Wait

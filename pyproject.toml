@@ -1,0 +1,13 @@
+[project]
+name = "usm-ui-test"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = "==3.12.0"
+dependencies = [
+    "getgauge>=0.5.1",
+    "playwright==1.61.0",
+    "pywin32>=312",
+    "typing>=3.10.0.0",
+    "requests>=2.31.0",
+]

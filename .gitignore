@@ -1,0 +1,45 @@
+# Gauge - metadata dir
+.gauge
+
+# Gauge - log files dir
+logs
+
+# Gauge - reports dir
+reports
+
+# Gauge - python compiled files
+*.pyc
+
+
+# Gauge - metadata dir
+.gauge/
+
+# Gauge - log files dir
+*.log
+
+# Gauge - reports dir
+reports/*
+
+# Gauge - python compiled files
+*.pyc
+
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.idea
+.vscode
+logs/
+.pw-artifacts
+.playwright-cli
+/node_modules/
+/specs/.temp/
+temp/*
+.playwright/data
