@@ -1,1 +1,14 @@
-{}
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python .claude/scripts/create_session_dir.py"
+          }
+        ]
+      }
+    ]
+  }
+}
